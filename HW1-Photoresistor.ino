@@ -7,8 +7,11 @@ void setup() {
 
 void loop() {
   int input = analogRead(14);
-  int input_map = map(input, 0, 700, 0, 255);
-  Serial.println(input);
+  if(input>500)input=500;
+  int input_map = map(input, 0, 500, 0, 255);
+  Serial.print(input);
+  Serial.print(" ");
+  Serial.println(input_map);
 
-  ledcWrite(0, input_map);  //頻道0
+  ledcWrite(0, 255-input_map);  //頻道0
 }
